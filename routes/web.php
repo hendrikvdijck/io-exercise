@@ -16,3 +16,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('songs', SongController::class)->only([
+    'index', 'show', 'update', 'store', 'destroy'
+]);
+
+Route::resource('albums', AlbumController::class)->only([
+    'index', 'show', 'update', 'store', 'destroy'
+]);
+
+Route::resource('artists', ArtistController::class)->only([
+    'index', 'show', 'update', 'store', 'destroy'
+]);
