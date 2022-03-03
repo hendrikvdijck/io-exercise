@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use app\Models\Song;
 
 class SongController extends Controller
 {
@@ -34,7 +35,14 @@ class SongController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+        'name' => 'required|max:255',
+        'album_id' => 'required'
+
+    ]);
+    $show = Song::create($validatedData);
+
+    return redirect('/songs');
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Album;
 
 class AlbumController extends Controller
 {
@@ -13,7 +14,7 @@ class AlbumController extends Controller
      */
     public function index()
     {
-        //
+        return redirect('/');
     }
 
     /**
@@ -23,7 +24,7 @@ class AlbumController extends Controller
      */
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
@@ -34,7 +35,14 @@ class AlbumController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+        'name' => 'required|max:255',
+        'artist_id' => 'required'
+
+    ]);
+    $show = Album::create($validatedData);
+
+    return redirect('/albums');
     }
 
     /**
